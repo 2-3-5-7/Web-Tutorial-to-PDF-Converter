@@ -1,0 +1,40 @@
+* 此文件书写规则
+* 	- 空白字符行会被忽略
+* 	- "*" 开头的行为注释
+* 	- "!" 开头的为 JS 代码，将多行合并为一行后，发给 chrome 浏览器执行
+* 	- "#" 开头的行当作标题，用来在没有 url 时占位和控制等级，会增加文件名前缀的计数
+* 	- 其它有内容的行，格式为 ([TAB 缩进]url	[文件名])。先根据缩进等级确定标题，后接 url，最后可选的文件名，如无，则从 url 中取
+*
+* 获取 url 用 make_menu.js 代码，或者下面这样手动选取输出，然后调整缩进
+* 	打开 Persist Logs，Ctrl + Shift + C 选取元素
+* 	$0.querySelectorAll('a').forEach(e => console.log(e.href))
+*
+* [ 此文件特定信息 ]
+*
+* make_menu.js 用到的 selectors
+
+* 菜单很小，所以手动选取
+*
+* 提取内容的 JS 代码，会发给 chrome 浏览器执行
+
+! const ct = document.querySelector('article>div[class^=prose]');document.querySelectorAll('body *').forEach(el => {if (!ct.contains(el) && !el.contains(ct)) el.remove();});document.querySelectorAll('code[class^=code-block]').forEach(code => {code.style.whiteSpace = 'pre-wrap'; code.querySelectorAll('.line').forEach(l => l.style.height = 'auto') });
+
+https://nextjs.org/learn/dashboard-app	Introduction
+https://nextjs.org/learn/dashboard-app/getting-started	Getting Started
+https://nextjs.org/learn/dashboard-app/css-styling	CSS Styling
+https://nextjs.org/learn/dashboard-app/optimizing-fonts-images	Optimizing Fonts and Images
+https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages	Creating Layouts and Pages
+https://nextjs.org/learn/dashboard-app/navigating-between-pages	Navigating Between Pages
+https://nextjs.org/learn/dashboard-app/setting-up-your-database	Setting Up Your Database
+https://nextjs.org/learn/dashboard-app/fetching-data	Fetching Data
+https://nextjs.org/learn/dashboard-app/static-and-dynamic-rendering	Static and Dynamic Rendering
+https://nextjs.org/learn/dashboard-app/streaming	Streaming
+https://nextjs.org/learn/dashboard-app/partial-prerendering	Partial Prerendering (Optional)
+https://nextjs.org/learn/dashboard-app/adding-search-and-pagination	Adding Search and Pagination
+https://nextjs.org/learn/dashboard-app/mutating-data	Mutating Data
+https://nextjs.org/learn/dashboard-app/error-handling	Handling Errors
+https://nextjs.org/learn/dashboard-app/improving-accessibility	Improving Accessibility
+https://nextjs.org/learn/dashboard-app/adding-authentication	Adding Authentication
+https://nextjs.org/learn/dashboard-app/adding-metadata	Adding Metadata
+https://nextjs.org/learn/dashboard-app/next-steps	Next Steps
+

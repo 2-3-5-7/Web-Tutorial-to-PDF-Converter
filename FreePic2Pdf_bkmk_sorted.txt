@@ -1,0 +1,1203 @@
+1. The JavaScript language	1
+	1.1 An introduction	2
+		1.1.1 An Introduction to JavaScript	3
+			What is JavaScript?	3
+			What can in-browser JavaScript do?	3
+			What CAN’T in-browser JavaScript do?	4
+			What makes JavaScript unique?	5
+			Languages “over” JavaScript	5
+			Summary	6
+		1.1.2 Manuals and specifications	9
+			Specification	9
+			Manuals	9
+			Compatibility tables	9
+		1.1.3 Code editors	12
+			IDE	12
+			Lightweight editors	12
+			Let’s not argue	12
+		1.1.4 Developer console	16
+			Google Chrome	16
+			Firefox, Edge, and others	17
+			Safari	17
+			Summary	17
+	1.2 JavaScript Fundamentals	20
+		1.2.1 Hello, world!	21
+			The “script” tag	21
+			Modern markup	21
+			External scripts	22
+			Summary	23
+			Tasks	23
+		1.2.2 Code structure	27
+			Statements	27
+			Semicolons	27
+			Comments	28
+		1.2.3 The modern mode, "use strict"	33
+			“use strict”	33
+			Browser console	34
+			Should we “use strict”?	34
+		1.2.4 Variables	37
+			A variable	37
+			A real-life analogy	38
+			Variable naming	40
+			Constants	41
+			Name things right	42
+			Summary	43
+			Tasks	43
+		1.2.5 Data types	47
+			Number	47
+			BigInt	48
+			String	49
+			Boolean (logical type)	49
+			The “null” value	50
+			The “undefined” value	50
+			Objects and Symbols	51
+			The typeof operator	51
+			Summary	52
+			Tasks	52
+		1.2.6 Interaction: alert, prompt, confirm	57
+			alert	57
+			prompt	57
+			confirm	58
+			Summary	58
+			Tasks	59
+		1.2.7 Type Conversions	64
+			String Conversion	64
+			Numeric Conversion	64
+			Boolean Conversion	65
+			Summary	66
+		1.2.8 Basic operators, maths	74
+			Terms: “unary”, “binary”, “operand”	74
+			Maths	74
+			String concatenation with binary +	75
+			Numeric conversion, unary +	76
+			Operator precedence	77
+			Assignment	77
+			Modify-in-place	79
+			Increment/decrement	79
+			Bitwise operators	81
+			Comma	82
+			Tasks	82
+		1.2.9 Comparisons	88
+			Boolean is the result	88
+			String comparison	88
+			Comparison of different types	89
+			Strict equality	90
+			Comparison with null and undefined	91
+			Summary	92
+			Tasks	92
+		1.2.10 Conditional branching: if, '?'	95
+			The “if” statement	95
+			Boolean conversion	95
+			The “else” clause	96
+			Several conditions: “else if”	96
+			Conditional operator ‘?’	96
+			Multiple ‘?’	97
+			Non-traditional use of ‘?’	98
+			Tasks	99
+		1.2.11 Logical operators	105
+			|| (OR)	105
+			OR "||" finds the first truthy value	106
+			&& (AND)	107
+			AND “&&” finds the first falsy value	107
+			! (NOT)	109
+			Tasks	110
+		1.2.12 Nullish coalescing operator '??'	116
+			Comparison with ||	117
+			Precedence	118
+			Summary	118
+		1.2.13 Loops: while and for	123
+			The “while” loop	123
+			The “do…while” loop	124
+			The “for” loop	124
+			Breaking the loop	127
+			Continue to the next iteration	127
+			Labels for break/continue	128
+			Summary	130
+			Tasks	130
+		1.2.14 The "switch" statement	137
+			The syntax	137
+			An example	137
+			Grouping of “case”	139
+			Type matters	139
+			Tasks	140
+		1.2.15 Functions	143
+			Function Declaration	143
+			Local variables	143
+			Outer variables	144
+			Parameters	145
+			Default values	146
+			Returning a value	148
+			Naming a function	150
+			Functions == Comments	151
+			Summary	152
+			Tasks	153
+		1.2.16 Function expressions	158
+			Function is a value	158
+			Callback functions	160
+			Function Expression vs Function Declaration	161
+			Summary	164
+		1.2.17 Arrow functions, the basics	168
+			Multiline arrow functions	169
+			Summary	169
+			Tasks	170
+		1.2.18 JavaScript specials	174
+			Code structure	174
+			Strict mode	174
+			Variables	175
+			Interaction	175
+			Operators	176
+			Loops	177
+			The “switch” construct	177
+			Functions	178
+			More to come	179
+	1.3 Code quality	183
+		1.3.1 Debugging in the browser	184
+			The “Sources” panel	184
+			Console	185
+			Breakpoints	185
+			The command “debugger”	186
+			Pause and look around	186
+			Tracing the execution	187
+			Logging	188
+			Summary	188
+		1.3.2 Coding Style	193
+			Syntax	193
+			Function Placement	197
+			Style Guides	198
+			Automated Linters	198
+			Summary	199
+			Tasks	199
+		1.3.3 Comments	205
+			Bad comments	205
+			Good comments	207
+			Summary	208
+		1.3.4 Ninja code	213
+			Brevity is the soul of wit	213
+			One-letter variables	213
+			Use abbreviations	214
+			Soar high. Be abstract.	214
+			Attention test	214
+			Smart synonyms	215
+			Reuse names	215
+			Underscores for fun	216
+			Show your love	216
+			Overlap outer variables	216
+			Side-effects everywhere!	216
+			Powerful functions!	217
+			Summary	217
+		1.3.5 Automated testing with Mocha	221
+			Why do we need tests?	221
+			Behavior Driven Development (BDD)	221
+			Development of “pow”: the spec	221
+			The development flow	222
+			The spec in action	222
+			Initial implementation	224
+			Improving the spec	224
+			Improving the implementation	225
+			Nested describe	226
+			Extending the spec	228
+			Summary	230
+			Tasks	231
+		1.3.6 Polyfills and transpilers	235
+			Transpilers	235
+			Polyfills	235
+			Summary	236
+	1.4 Objects: the basics	240
+		1.4.1 Objects	241
+			Literals and properties	241
+			Square brackets	243
+			Property value shorthand	245
+			Property names limitations	246
+			Property existence test, “in” operator	247
+			The "for..in" loop	248
+			Summary	250
+			Tasks	250
+		1.4.2 Object references and copying	256
+			Comparison by reference	257
+			Cloning and merging, Object.assign	258
+			Nested cloning	260
+			Summary	262
+		1.4.3 Garbage collection	266
+			Reachability	266
+			A simple example	266
+			Two references	267
+			Interlinked objects	267
+			Unreachable island	269
+			Internal algorithms	270
+			Summary	272
+		1.4.4 Object methods, "this"	277
+			Method examples	277
+			“this” in methods	278
+			“this” is not bound	279
+			Arrow functions have no “this”	281
+			Summary	281
+			Tasks	281
+		1.4.5 Constructor, operator "new"	287
+			Constructor function	287
+			Constructor mode test: new.target	288
+			Return from constructors	289
+			Methods in constructor	290
+			Summary	290
+			Tasks	291
+		1.4.6 Optional chaining '?.'	298
+			The “non-existing property” problem	298
+			Optional chaining	299
+			Short-circuiting	300
+			Other variants: ?.(), ?.[]	301
+			Summary	302
+		1.4.7 Symbol type	306
+			Symbols	306
+			“Hidden” properties	307
+			Global symbols	309
+			System symbols	310
+			Summary	310
+		1.4.8 Object to primitive conversion	315
+			Conversion rules	315
+			Hints	315
+			Symbol.toPrimitive	317
+			toString/valueOf	317
+			Further conversions	319
+			Summary	320
+	1.5 Data types	323
+		1.5.1 Methods of primitives	324
+			A primitive as an object	324
+			Summary	326
+			Tasks	327
+		1.5.2 Numbers	331
+			More ways to write a number	331
+			toString(base)	332
+			Rounding	333
+			Imprecise calculations	334
+			Tests: isFinite and isNaN	336
+			parseInt and parseFloat	338
+			Other math functions	339
+			Summary	339
+			Tasks	340
+		1.5.3 Strings	347
+			Quotes	347
+			Special characters	348
+			String length	349
+			Accessing characters	349
+			Strings are immutable	350
+			Changing the case	350
+			Searching for a substring	350
+			Getting a substring	353
+			Comparing strings	354
+			Summary	356
+			Tasks	356
+		1.5.4 Arrays	361
+			Declaration	361
+			Get last elements with “at”	362
+			Methods pop/push, shift/unshift	363
+			Internals	365
+			Performance	366
+			Loops	367
+			A word about “length”	368
+			new Array()	368
+			Multidimensional arrays	369
+			toString	369
+			Don’t compare arrays with ==	369
+			Summary	370
+			Tasks	371
+		1.5.5 Array methods	378
+			Add/remove items	378
+			Iterate: forEach	381
+			Searching in array	382
+			Transform an array	384
+			Array.isArray	390
+			Most methods support “thisArg”	390
+			Summary	391
+			Tasks	392
+		1.5.6 Iterables	402
+			Symbol.iterator	402
+			String is iterable	404
+			Calling an iterator explicitly	404
+			Iterables and array-likes	405
+			Array.from	405
+			Summary	407
+		1.5.7 Map and Set	414
+			Map	414
+			Iteration over Map	415
+			Object.entries: Map from Object	416
+			Object.fromEntries: Object from Map	417
+			Set	418
+			Iteration over Set	419
+			Summary	419
+			Tasks	420
+		1.5.8 WeakMap and WeakSet	425
+			WeakMap	426
+			Use case: additional data	426
+			Use case: caching	428
+			WeakSet	429
+			Summary	430
+			Tasks	430
+		1.5.9 Object.keys, values, entries	436
+			Object.keys, values, entries	436
+			Transforming objects	437
+			Tasks	438
+		1.5.10 Destructuring assignment	441
+			Array destructuring	441
+			Object destructuring	445
+			Nested destructuring	448
+			Smart function parameters	449
+			Summary	451
+			Tasks	451
+		1.5.11 Date and time	456
+			Creation	456
+			Access date components	457
+			Setting date components	458
+			Autocorrection	459
+			Date to number, date diff	459
+			Date.now()	460
+			Benchmarking	460
+			Date.parse from a string	462
+			Summary	463
+			Tasks	464
+		1.5.12 JSON methods, toJSON	472
+			JSON.stringify	472
+			Excluding and transforming: replacer	475
+			Formatting: space	477
+			Custom “toJSON”	478
+			JSON.parse	479
+			Using reviver	480
+			Summary	481
+			Tasks	481
+	1.6 Advanced working with functions	487
+		1.6.1 Recursion and stack	488
+			Two ways of thinking	488
+			The execution context and stack	490
+			Recursive traversals	493
+			Recursive structures	495
+			Summary	498
+			Tasks	498
+		1.6.2 Rest parameters and spread syntax	505
+			Rest parameters ...	505
+			The “arguments” variable	506
+			Spread syntax	507
+			Copy an array/object	509
+			Summary	509
+		1.6.3 Variable scope, closure	514
+			Code blocks	514
+			Nested functions	515
+			Lexical Environment	516
+			Garbage collection	521
+			Tasks	523
+		1.6.4 The old "var"	533
+			“var” has no block scope	533
+			“var” tolerates redeclarations	534
+			“var” variables can be declared below their use	534
+			IIFE	536
+			Summary	537
+		1.6.5 Global object	542
+			Using for polyfills	543
+			Summary	543
+		1.6.6 Function object, NFE	546
+			The “name” property	546
+			The “length” property	547
+			Custom properties	548
+			Named Function Expression	549
+			Summary	551
+			Tasks	552
+		1.6.7 The "new Function" syntax	557
+			Syntax	557
+			Closure	557
+			Summary	558
+		1.6.8 Scheduling: setTimeout and setInterval	563
+			setTimeout	563
+			setInterval	564
+			Nested setTimeout	565
+			Zero delay setTimeout	567
+			Summary	568
+			Tasks	569
+		1.6.9 Decorators and forwarding, call/apply	575
+			Transparent caching	575
+			Using “func.call” for the context	576
+			Going multi-argument	578
+			func.apply	580
+			Borrowing a method	581
+			Decorators and function properties	582
+			Summary	582
+			Tasks	582
+		1.6.10 Function binding	591
+			Losing “this”	591
+			Solution 1: a wrapper	591
+			Solution 2: bind	592
+			Partial functions	594
+			Going partial without context	595
+			Summary	596
+			Tasks	596
+		1.6.11 Arrow functions revisited	603
+			Arrow functions have no “this”	603
+			Arrows have no “arguments”	604
+			Summary	605
+	1.7 Object properties configuration	611
+		1.7.1 Property flags and descriptors	612
+			Property flags	612
+			Non-writable	613
+			Non-enumerable	614
+			Non-configurable	615
+			Object.defineProperties	616
+			Object.getOwnPropertyDescriptors	617
+			Sealing an object globally	617
+		1.7.2 Property getters and setters	622
+			Getters and setters	622
+			Accessor descriptors	623
+			Smarter getters/setters	624
+			Using for compatibility	625
+	1.8 Prototypes, inheritance	630
+		1.8.1 Prototypal inheritance	631
+			[[Prototype]]	631
+			Writing doesn’t use prototype	634
+			The value of “this”	635
+			for…in loop	636
+			Summary	638
+			Tasks	638
+		1.8.2 F.prototype	644
+			Default F.prototype, constructor property	645
+			Summary	647
+			Tasks	647
+		1.8.3 Native prototypes	653
+			Object.prototype	653
+			Other built-in prototypes	654
+			Primitives	655
+			Changing native prototypes	656
+			Borrowing from prototypes	657
+			Summary	657
+			Tasks	657
+		1.8.4 Prototype methods, objects without __proto__	663
+			Brief history	664
+			"Very plain" objects	664
+			Summary	666
+			Tasks	667
+	1.9 Classes	673
+		1.9.1 Class basic syntax	674
+			The “class” syntax	674
+			What is a class?	675
+			Not just a syntactic sugar	676
+			Class Expression	677
+			Getters/setters	678
+			Computed names […]	678
+			Class fields	679
+			Summary	680
+			Tasks	681
+		1.9.2 Class inheritance	687
+			The “extends” keyword	687
+			Overriding a method	689
+			Overriding constructor	690
+			Super: internals, [[HomeObject]]	694
+			Summary	698
+			Tasks	699
+		1.9.3 Static properties and methods	705
+			Static properties	707
+			Inheritance of static properties and methods	707
+			Summary	708
+			Tasks	709
+		1.9.4 Private and protected properties and methods	714
+			A real-life example	714
+			Internal and external interface	715
+			Protecting “waterAmount”	716
+			Read-only “power”	717
+			Private “#waterLimit”	718
+			Summary	720
+		1.9.5 Extending built-in classes	726
+			No static inheritance in built-ins	727
+		1.9.6 Class checking: "instanceof"	731
+			The instanceof operator	731
+			Bonus: Object.prototype.toString for the type	733
+			Summary	735
+			Tasks	735
+		1.9.7 Mixins	739
+			A mixin example	739
+			EventMixin	741
+			Summary	743
+	1.10 Error handling	748
+		1.10.1 Error handling, "try...catch"	749
+			The “try…catch” syntax	749
+			Error object	751
+			Optional “catch” binding	752
+			Using “try…catch”	752
+			Throwing our own errors	753
+			Rethrowing	755
+			try…catch…finally	757
+			Global catch	759
+			Summary	760
+			Tasks	761
+		1.10.2 Custom errors, extending Error	766
+			Extending Error	766
+			Further inheritance	768
+			Wrapping exceptions	770
+			Summary	772
+			Tasks	772
+	1.11 Promises, async/await	776
+		1.11.1 Introduction: callbacks	777
+			Callback in callback	779
+			Handling errors	779
+			Pyramid of Doom	780
+		1.11.2 Promise	785
+			Consumers: then, catch	788
+			Cleanup: finally	789
+			Example: loadScript	791
+			Tasks	792
+		1.11.3 Promises chaining	797
+			Returning promises	799
+			Example: loadScript	799
+			Bigger example: fetch	801
+			Summary	804
+			Tasks	804
+		1.11.4 Error handling with promises	809
+			Implicit try…catch	809
+			Rethrowing	810
+			Unhandled rejections	811
+			Summary	812
+			Tasks	812
+		1.11.5 Promise API	817
+			Promise.all	817
+			Promise.allSettled	819
+			Promise.race	820
+			Promise.any	821
+			Promise.resolve/reject	822
+			Summary	823
+		1.11.6 Promisification	826
+		1.11.7 Microtasks	833
+			Microtasks queue	833
+			Unhandled rejection	834
+			Summary	834
+		1.11.8 Async/await	839
+			Async functions	839
+			Await	839
+			Error handling	842
+			Summary	844
+			Tasks	844
+	1.12 Generators, advanced iteration	850
+		1.12.1 Generators	851
+			Generator functions	851
+			Generators are iterable	853
+			Using generators for iterables	854
+			Generator composition	855
+			“yield” is a two-way street	857
+			generator.throw	858
+			generator.return	859
+			Summary	860
+			Tasks	860
+		1.12.2 Async iteration and generators	865
+			Recall iterables	865
+			Async iterables	866
+			Recall generators	867
+			Async generators (finally)	868
+			Real-life example: paginated data	870
+			Summary	872
+	1.13 Modules	877
+		1.13.1 Modules, introduction	878
+			What is a module?	878
+			Core module features	879
+			Browser-specific features	884
+			Build tools	887
+			Summary	887
+		1.13.2 Export and Import	891
+			Export before declarations	891
+			Export apart from declarations	891
+			Import *	892
+			Import “as”	892
+			Export “as”	893
+			Export default	893
+			Re-export	896
+			Summary	898
+		1.13.3 Dynamic imports	903
+			The import() expression	903
+	1.14 Miscellaneous	909
+		1.14.1 Proxy and Reflect	910
+			Proxy	910
+			Default value with “get” trap	912
+			Validation with “set” trap	913
+			Iteration with “ownKeys” and “getOwnPropertyDescriptor”	914
+			Protected properties with “deleteProperty” and other traps	916
+			“In range” with “has” trap	918
+			Wrapping functions: "apply"	919
+			Reflect	920
+			Proxy limitations	923
+			Revocable proxies	926
+			References	927
+			Summary	927
+			Tasks	928
+		1.14.2 Eval: run a code string	937
+			Using “eval”	938
+			Summary	938
+			Tasks	939
+		1.14.3 Currying	942
+			Currying? What for?	943
+			Advanced curry implementation	944
+			Summary	945
+		1.14.4 Reference Type	951
+			Reference type explained	951
+			Summary	952
+			Tasks	953
+		1.14.5 BigInt	956
+			Math operators	956
+			Comparisons	957
+			Boolean operations	957
+			Polyfills	957
+			References	958
+		1.14.6 Unicode, String internals	963
+			Surrogate pairs	963
+			Diacritical marks and normalization	965
+2. Browser: Document, Events, Interfaces	967
+	2.1 Document	968
+		2.1.1 Browser environment, specs	969
+			DOM (Document Object Model)	970
+			BOM (Browser Object Model)	970
+			Summary	971
+		2.1.2 DOM tree	974
+			An example of the DOM	974
+			Autocorrection	976
+			Other node types	977
+			See it for yourself	978
+			Interaction with console	980
+			Summary	981
+		2.1.3 Walking the DOM	985
+			On top: documentElement and body	985
+			Children: childNodes, firstChild, lastChild	986
+			Siblings and the parent	988
+			Element-only navigation	989
+			More links: tables	990
+			Summary	991
+			Tasks	991
+		2.1.4 Searching: getElement*, querySelector*	998
+			document.getElementById or just id	998
+			querySelectorAll	999
+			querySelector	1000
+			matches	1000
+			closest	1000
+			getElementsBy*	1001
+			Live collections	1002
+			Summary	1003
+			Tasks	1004
+		2.1.5 Node properties: type, tag and contents	1008
+			DOM node classes	1008
+			The “nodeType” property	1010
+			Tag: nodeName and tagName	1011
+			innerHTML: the contents	1012
+			outerHTML: full HTML of the element	1013
+			nodeValue/data: text node content	1014
+			textContent: pure text	1015
+			The “hidden” property	1015
+			More properties	1016
+			Summary	1016
+			Tasks	1017
+		2.1.6 Attributes and properties	1023
+			DOM properties	1023
+			HTML attributes	1024
+			Property-attribute synchronization	1025
+			DOM properties are typed	1026
+			Non-standard attributes, dataset	1027
+			Summary	1029
+			Tasks	1030
+		2.1.7 Modifying the document	1036
+			Example: show a message	1036
+			Creating an element	1036
+			Insertion methods	1037
+			insertAdjacentHTML/Text/Element	1039
+			Node removal	1040
+			Cloning nodes: cloneNode	1041
+			DocumentFragment	1042
+			Old-school insert/remove methods	1043
+			A word about “document.write”	1044
+			Summary	1045
+			Tasks	1046
+		2.1.8 Styles and classes	1061
+			className and classList	1061
+			Element style	1062
+			Resetting the style property	1063
+			Mind the units	1064
+			Computed styles: getComputedStyle	1064
+			Summary	1066
+			Tasks	1067
+		2.1.9 Element size and scrolling	1072
+			Sample element	1072
+			Geometry	1073
+			offsetParent, offsetLeft/Top	1074
+			offsetWidth/Height	1075
+			clientTop/Left	1076
+			clientWidth/Height	1077
+			scrollWidth/Height	1078
+			scrollLeft/scrollTop	1079
+			Don’t take width/height from CSS	1080
+			Summary	1081
+			Tasks	1082
+		2.1.10 Window sizes and scrolling	1087
+			Width/height of the window	1087
+			Width/height of the document	1088
+			Get the current scroll	1088
+			Scrolling: scrollTo, scrollBy, scrollIntoView	1088
+			scrollIntoView	1089
+			Forbid the scrolling	1089
+			Summary	1090
+		2.1.11 Coordinates	1093
+			Element coordinates: getBoundingClientRect	1093
+			elementFromPoint(x, y)	1096
+			Using for “fixed” positioning	1096
+			Document coordinates	1097
+			Summary	1098
+			Tasks	1098
+	2.2 Introduction to Events	1109
+		2.2.1 Introduction to browser events	1110
+			Event handlers	1110
+			Accessing the element: this	1112
+			Possible mistakes	1112
+			addEventListener	1113
+			Event object	1116
+			Object handlers: handleEvent	1117
+			Summary	1118
+			Tasks	1119
+		2.2.2 Bubbling and capturing	1126
+			Bubbling	1126
+			event.target	1127
+			Stopping bubbling	1129
+			Capturing	1129
+			Summary	1132
+		2.2.3 Event delegation	1137
+			Delegation example: actions in markup	1139
+			The “behavior” pattern	1140
+			Summary	1142
+			Tasks	1142
+		2.2.4 Browser default actions	1151
+			Preventing browser actions	1151
+			The “passive” handler option	1152
+			event.defaultPrevented	1153
+			Summary	1155
+			Tasks	1156
+		2.2.5 Dispatching custom events	1165
+			Event constructor	1165
+			dispatchEvent	1165
+			Bubbling example	1166
+			MouseEvent, KeyboardEvent and others	1166
+			Custom events	1167
+			event.preventDefault()	1168
+			Events-in-events are synchronous	1169
+			Summary	1170
+	2.3 UI Events	1174
+		2.3.1 Mouse events	1175
+			Mouse event types	1175
+			Events order	1175
+			Mouse button	1176
+			Modifiers: shift, alt, ctrl and meta	1176
+			Coordinates: clientX/Y, pageX/Y	1177
+			Preventing selection on mousedown	1178
+			Summary	1179
+			Tasks	1179
+		2.3.2 Moving the mouse: mouseover/out, mouseenter/leave	1186
+			Events mouseover/mouseout, relatedTarget	1186
+			Skipping elements	1188
+			Mouseout when leaving for a child	1190
+			Events mouseenter and mouseleave	1193
+			Event delegation	1195
+			Summary	1201
+			Tasks	1201
+		2.3.3 Drag'n'Drop with mouse events	1210
+			Drag’n’Drop algorithm	1210
+			Correct positioning	1212
+			Potential drop targets (droppables)	1213
+			Summary	1216
+			Tasks	1217
+		2.3.4 Pointer events	1222
+			The brief history	1222
+			Pointer event types	1222
+			Pointer event properties	1223
+			Multi-touch	1223
+			Event: pointercancel	1224
+			Pointer capturing	1225
+			Summary	1227
+		2.3.5 Keyboard: keydown and keyup	1231
+			Teststand	1231
+			Keydown and keyup	1233
+			Auto-repeat	1235
+			Default actions	1235
+			Legacy	1236
+			Mobile Keyboards	1236
+			Summary	1237
+			Tasks	1237
+		2.3.6 Scrolling	1242
+			Prevent scrolling	1242
+			Tasks	1242
+	2.4 Forms, controls	1249
+		2.4.1 Form properties and methods	1250
+			Navigation: form and elements	1250
+			Backreference: element.form	1252
+			Form elements	1253
+			References	1255
+			Summary	1255
+			Tasks	1256
+		2.4.2 Focusing: focus/blur	1259
+			Events focus/blur	1259
+			Methods focus/blur	1260
+			Allow focusing on any element: tabindex	1261
+			Delegation: focusin/focusout	1262
+			Summary	1263
+			Tasks	1263
+		2.4.3 Events: change, input, cut, copy, paste	1272
+			Event: change	1272
+			Event: input	1272
+			Events: cut, copy, paste	1273
+			Summary	1274
+			Tasks	1274
+		2.4.4 Forms: event and method submit	1279
+			Event: submit	1279
+			Method: submit	1280
+			Tasks	1280
+	2.5 Document and resource loading	1284
+		2.5.1 Page: DOMContentLoaded, load, beforeunload, unload	1285
+			DOMContentLoaded	1285
+			window.onload	1287
+			window.onunload	1287
+			window.onbeforeunload	1288
+			readyState	1289
+			Summary	1291
+		2.5.2 Scripts: async, defer	1296
+			defer	1296
+			async	1298
+			Dynamic scripts	1299
+			Summary	1299
+		2.5.3 Resource loading: onload and onerror	1304
+			Loading a script	1304
+			Other resources	1305
+			Crossorigin policy	1306
+			Summary	1307
+			Tasks	1308
+	2.6 Miscellaneous	1312
+		2.6.1 Mutation observer	1313
+			Syntax	1313
+			Usage for integration	1314
+			Usage for architecture	1315
+			Additional methods	1317
+			Summary	1318
+		2.6.2 Selection and Range	1323
+			Range	1323
+			Range properties	1326
+			Range selection methods	1327
+			Range editing methods	1327
+			Selection	1329
+			Selection properties	1330
+			Selection events	1330
+			Selection methods	1332
+			Selection in form controls	1333
+			Making unselectable	1336
+			References	1337
+			Summary	1337
+		2.6.3 Event loop: microtasks and macrotasks	1341
+			Event Loop	1341
+			Use-case 1: splitting CPU-hungry tasks	1342
+			Use case 2: progress indication	1344
+			Use case 3: doing something after the event	1345
+			Macrotasks and Microtasks	1345
+			Summary	1347
+			Tasks	1347
+3. Additional articles	1352
+	3.1 Frames and windows	1353
+		3.1.1 Popups and window methods	1354
+			Popup blocking	1354
+			window.open	1354
+			Example: a minimalistic window	1355
+			Accessing popup from window	1356
+			Accessing window from popup	1356
+			Closing a popup	1357
+			Moving and resizing	1357
+			Scrolling a window	1358
+			Focus/blur on a window	1358
+			Summary	1358
+		3.1.2 Cross-window communication	1363
+			Same Origin	1363
+			Windows on subdomains: document.domain	1364
+			Iframe: wrong document pitfall	1365
+			Collection: window.frames	1366
+			The “sandbox” iframe attribute	1367
+			Cross-window messaging	1368
+			Summary	1370
+		3.1.3 The clickjacking attack	1375
+			The idea	1375
+			The demo	1375
+			Old-school defences (weak)	1377
+			X-Frame-Options	1379
+			Showing with disabled functionality	1379
+			Samesite cookie attribute	1381
+			Summary	1381
+	3.2 Binary data, files	1384
+		3.2.1 ArrayBuffer, binary arrays	1385
+			TypedArray	1386
+			TypedArray methods	1389
+			DataView	1389
+			Summary	1390
+			Tasks	1391
+		3.2.2 TextDecoder and TextEncoder	1396
+			TextEncoder	1397
+		3.2.3 Blob	1400
+			Blob as URL	1401
+			Blob to base64	1402
+			Image to blob	1403
+			From Blob to ArrayBuffer	1404
+			From Blob to stream	1404
+			Summary	1404
+		3.2.4 File and FileReader	1409
+			FileReader	1409
+			Summary	1411
+	3.3 Network requests	1417
+		3.3.1 Fetch	1418
+			Response headers	1420
+			Request headers	1420
+			POST requests	1421
+			Sending an image	1422
+			Summary	1423
+			Tasks	1424
+		3.3.2 FormData	1428
+			Sending a simple form	1428
+			FormData Methods	1428
+			Sending a form with a file	1429
+			Sending a form with Blob data	1430
+			Summary	1431
+		3.3.3 Fetch: Download progress	1436
+		3.3.4 Fetch: Abort	1442
+			The AbortController object	1442
+			Using with fetch	1443
+			AbortController is scalable	1443
+			Summary	1444
+		3.3.5 Fetch: Cross-Origin Requests	1446
+			Why is CORS needed? A brief history	1446
+			Safe requests	1448
+			CORS for safe requests	1448
+			Response headers	1449
+			“Unsafe” requests	1450
+			Credentials	1453
+			Summary	1454
+			Tasks	1454
+		3.3.6 Fetch API	1459
+			referrer, referrerPolicy	1459
+			mode	1461
+			credentials	1461
+			cache	1461
+			redirect	1462
+			integrity	1462
+			keepalive	1462
+		3.3.7 URL objects	1466
+			Creating a URL	1466
+			SearchParams “?…”	1467
+			Encoding	1468
+		3.3.8 XMLHttpRequest	1474
+			The basics	1474
+			Response Type	1476
+			Ready states	1477
+			Aborting request	1478
+			Synchronous requests	1478
+			HTTP-headers	1478
+			POST, FormData	1480
+			Upload progress	1481
+			Cross-origin requests	1482
+			Summary	1482
+		3.3.9 Resumable file upload	1486
+			Not-so-useful progress event	1486
+			Algorithm	1486
+		3.3.10 Long polling	1490
+			Regular Polling	1490
+			Long polling	1490
+			Demo: a chat	1491
+			Area of usage	1494
+		3.3.11 WebSocket	1500
+			A simple example	1500
+			Opening a websocket	1501
+			Data transfer	1503
+			Rate limiting	1504
+			Connection close	1504
+			Connection state	1505
+			Chat example	1505
+			Summary	1507
+		3.3.12 Server Sent Events	1511
+			Getting messages	1511
+			Reconnection	1512
+			Message id	1513
+			Connection status: readyState	1513
+			Event types	1514
+			Full example	1514
+			Summary	1515
+	3.4 Storing data in the browser	1519
+		3.4.1 Cookies, document.cookie	1520
+			Reading from document.cookie	1520
+			Writing to document.cookie	1520
+			path	1521
+			domain	1521
+			expires, max-age	1522
+			secure	1523
+			samesite	1523
+			httpOnly	1525
+			Appendix: Cookie functions	1525
+			Appendix: Third-party cookies	1526
+			Appendix: GDPR	1528
+			Summary	1528
+		3.4.2 LocalStorage, sessionStorage	1532
+			localStorage demo	1532
+			Object-like access	1533
+			Looping over keys	1533
+			Strings only	1534
+			sessionStorage	1534
+			Storage event	1535
+			Summary	1536
+			Tasks	1536
+		3.4.3 IndexedDB	1540
+			Open database	1540
+			Object store	1543
+			Transactions	1545
+			Transactions’ autocommit	1546
+			Error handling	1548
+			Searching	1549
+			Deleting from store	1552
+			Cursors	1552
+			Promise wrapper	1554
+			Summary	1555
+	3.5 Animation	1560
+		3.5.1 Bezier curve	1561
+			Control points	1561
+			De Casteljau’s algorithm	1563
+			Maths	1567
+			Summary	1568
+		3.5.2 CSS-animations	1573
+			CSS transitions	1573
+			transition-property	1574
+			transition-duration	1574
+			transition-delay	1574
+			transition-timing-function	1577
+			Event: “transitionend”	1586
+			Keyframes	1587
+			Performance	1588
+			Summary	1590
+			Tasks	1590
+		3.5.3 JavaScript animations	1597
+			Using setInterval	1597
+			Using requestAnimationFrame	1598
+			Structured animation	1599
+			Timing functions	1601
+			Reversal: ease*	1604
+			More interesting “draw”	1608
+			Summary	1609
+			Tasks	1610
+	3.6 Web components	1614
+		3.6.1 From the orbital height	1615
+			What’s common between…	1615
+			Component architecture	1616
+		3.6.2 Custom elements	1619
+			Example: “time-formatted”	1620
+			Observing attributes	1621
+			Rendering order	1622
+			Customized built-in elements	1624
+			References	1625
+			Summary	1625
+			Tasks	1626
+		3.6.3 Shadow DOM	1631
+			Built-in shadow DOM	1631
+			Shadow tree	1631
+			Encapsulation	1633
+			References	1633
+			Summary	1633
+		3.6.4 Template element	1637
+			Inserting template	1637
+			Summary	1638
+		3.6.5 Shadow DOM slots, composition	1640
+			Named slots	1640
+			Slot fallback content	1643
+			Default slot: first unnamed	1643
+			Menu example	1644
+			Updating slots	1646
+			Slot API	1647
+			Summary	1648
+		3.6.6 Shadow DOM styling	1651
+			:host	1651
+			Cascading	1651
+			:host(selector)	1652
+			Styling slotted content	1653
+			CSS hooks with custom properties	1655
+			Summary	1656
+		3.6.7 Shadow DOM and events	1658
+			Bubbling, event.composedPath()	1659
+			event.composed	1660
+			Custom events	1660
+			Summary	1661
+	3.7 Regular expressions	1664
+		3.7.1 Patterns and flags	1665
+			Regular Expressions	1665
+			Flags	1665
+			Searching: str.match	1666
+			Replacing: str.replace	1667
+			Testing: regexp.test	1668
+			Summary	1668
+		3.7.2 Character classes	1671
+			Inverse classes	1672
+			A dot is “any character”	1672
+			Summary	1674
+		3.7.3 Unicode: flag "u" and class \p{...}	1676
+			Unicode properties \p{…}	1676
+			Summary	1679
+		3.7.4 Anchors: string start ^ and end $	1682
+			Testing for a full match	1682
+			Tasks	1683
+		3.7.5 Multiline mode of anchors ^ $, flag "m"	1686
+			Searching at line start ^	1686
+			Searching at line end $	1686
+			Searching for \n instead of ^ $	1687
+		3.7.6 Word boundary: \b	1690
+			Tasks	1691
+		3.7.7 Escaping, special characters	1694
+			Escaping	1694
+			A slash	1694
+			new RegExp	1695
+			Summary	1695
+		3.7.8 Sets and ranges [...]	1697
+			Sets	1697
+			Ranges	1697
+			Excluding ranges	1698
+			Escaping in […]	1699
+			Ranges and flag “u”	1699
+			Tasks	1700
+		3.7.9 Quantifiers +, *, ? and {n}	1703
+			Quantity {n}	1703
+			Shorthands	1703
+			More examples	1704
+			Tasks	1705
+		3.7.10 Greedy and lazy quantifiers	1707
+			Greedy search	1707
+			Lazy mode	1709
+			Alternative approach	1711
+			Summary	1713
+			Tasks	1714
+		3.7.11 Capturing groups	1718
+			Examples	1718
+			Parentheses contents in the match	1719
+			Searching for all matches with groups: matchAll	1721
+			Named groups	1722
+			Capturing groups in replacement	1723
+			Non-capturing groups with ?:	1724
+			Summary	1724
+			Tasks	1724
+		3.7.12 Backreferences in pattern: \N and \k<name>	1730
+			Backreference by number: \N	1730
+			Backreference by name: \k<name>	1731
+		3.7.13 Alternation (OR) |	1733
+			Example: regexp for time	1733
+			Tasks	1734
+		3.7.14 Lookahead and lookbehind	1739
+			Lookahead	1739
+			Negative lookahead	1739
+			Lookbehind	1740
+			Capturing groups	1740
+			Summary	1741
+			Tasks	1741
+		3.7.15 Catastrophic backtracking	1745
+			Example	1745
+			Simplified example	1745
+			Back to words and strings	1747
+			How to fix?	1748
+			Preventing backtracking	1749
+		3.7.16 Sticky flag "y", searching at position	1752
+		3.7.17 Methods of RegExp and String	1756
+			str.match(regexp)	1756
+			str.matchAll(regexp)	1757
+			str.split(regexp|substr, limit)	1757
+			str.search(regexp)	1758
+			str.replace(str|regexp, str|func)	1758
+			str.replaceAll(str|regexp, str|func)	1760
+			regexp.exec(str)	1760
+			regexp.test(str)	1761

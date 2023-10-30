@@ -1,0 +1,280 @@
+* 此文件书写规则
+* 	- 空白字符行会被忽略
+* 	- "*" 开头的行为注释
+* 	- "!" 开头的为 JS 代码，将多行合并为一行后，发给 chrome 浏览器执行
+* 	- "#" 开头的行当作标题，用来在没有 url 时占位和控制等级，会增加文件名前缀的计数
+* 	- 其它有内容的行，格式为 ([TAB 缩进]url	[文件名])。先根据缩进等级确定标题，后接 url，最后可选的文件名，如无，则从 url 中取
+*
+* 获取 url 用 make_menu.js 代码，或者下面这样手动选取输出，然后调整缩进
+* 	打开 Persist Logs，Ctrl + Shift + C 选取元素
+* 	$0.querySelectorAll('a').forEach(e => console.log(e.href))
+
+* [ 此文件特定信息 ]
+
+* make_menu.js 用到的 selectors
+
+*  let menu = {
+*    title: 'The Modern JavaScript Tutorial',
+*    url: 'https://javascript.info/',
+*    items: [] };
+*  // items_selector, item_title, item_url, item_action
+*  let selectors = [['div.tabs__content', 'h2']
+*                   , ['.list__item', '.list__title a', '.list__title a']
+*                   , ['.list-sub__item:not(:has(a.list-sub__more))', 'a', 'a']
+*                  ];
+
+* 提取内容的 JS 代码，会发给 chrome 浏览器执行
+
+* 移除主页面元素和清 0 padding
+! document.querySelectorAll('.page__nav-wrap, .article-tablet-foot, .comments__header, .sitetoolbar__content, .main__header-group, .tutorial-progress, .page-footer, .codebox .toolbar').forEach(e => e.remove());
+! document.querySelector('.main').style.padding = '0';
+* 解除最大宽度限制
+! document.querySelector('.main').style.maxWidth = 'none';
+* 长代码行折行
+! document.querySelectorAll('.codebox pre>code').forEach(e => e.style.whiteSpace = 'pre-wrap');
+* 多标签代码，切换标签后复制多次，最后删除自身，实现代码分开展示
+! document.querySelectorAll('.code-tabs__buttons').forEach(e => e.remove());
+! document.querySelectorAll('.code-tabs').forEach(code => { code.querySelectorAll('.code-tabs__switch').forEach(tab => {tab.click(); code.before(code.cloneNode(true));}); code.remove();});
+
+* disqus 评论区，只保留前 20 条评论，并移除无关元素
+! const idoc = document.querySelector('#disqus_thread iframe')?.contentWindow.document;
+! if (idoc) {
+!       const ct = idoc.querySelector('#post-list');idoc.querySelectorAll('body *').forEach(el => {if (!ct.contains(el) && !el.contains(ct)) el.remove();});
+!       [...idoc.querySelectorAll('li.post')].slice(20).forEach(e => e.remove());
+!       idoc.querySelectorAll('li.reply, li.bullet, li.comment__share, .post-menu, .post-meta, .follow-user-container, .parent-link-container, .avatar, .vote-up .control, .vote-down .control').forEach(e => e.remove());
+*       post 之间添加分割线
+!       idoc.querySelectorAll('.post-content').forEach(e => e.style.borderBottom = '1px solid lightgray');
+*       移除底部边线
+!       document.querySelector('.comments').style.borderBottom = '0px';
+*       展开折叠的长回复，一般是代码
+!       idoc.querySelectorAll('.see-more').forEach(e => e.click());
+!  }
+! window.scrollTo(0, document.body.scrollHeight);
+
+* [ 注意 ]
+
+* 注意章节页面没有评论区，在 puppeteer 的 waitForFrame 前要判断
+* 不并行，maxConcurrency: 1 时 disqus 输出正常，否则 pdf 尾部可能包含大量空白页
+* 输出 pdf 设置 scale 或 将 viewport height 调成 100_0000 都会导致 disqus 的尾部被截掉，可能是 iframe？没有解决
+* 在执行 page.evaluate(js) 前后都 sleep 2s，等待 iframe 加载和删除 iframe 元素后等待生效，这样做只是尝试出来的，没有依据
+* 操作 disqus 评论需要 disable the Same-origin policy，指定 3 个选项 --user-data-dir=D:\Desktop\chrome --disable-site-isolation-trials --disable-web-security
+* 参考 https://stackoverflow.com/questions/3102819/disable-same-origin-policy-in-chrome
+* 附上代码片段
+* if (getLevelsFromFilename(filename).length === 3) {
+* 	await page.waitForFrame(
+* 		async frame => {
+* 			return frame.name().startsWith('dsq-');
+* 		}
+* 	)
+* }
+* // iframe 等待加载的时间
+* await sleep(2000);
+* await page.evaluate(js);
+* // iframe 里的元素被删除后，需要等一下高度才能变小
+* await sleep(2000);
+
+#	The JavaScript language
+	https://javascript.info/getting-started	An introduction
+		https://javascript.info/intro	An Introduction to JavaScript
+		https://javascript.info/manuals-specifications	Manuals and specifications
+		https://javascript.info/code-editors	Code editors
+		https://javascript.info/devtools	Developer console
+	https://javascript.info/first-steps	JavaScript Fundamentals
+		https://javascript.info/hello-world	Hello, world!
+		https://javascript.info/structure	Code structure
+		https://javascript.info/strict-mode	The modern mode, "use strict"
+		https://javascript.info/variables	Variables
+		https://javascript.info/types	Data types
+		https://javascript.info/alert-prompt-confirm	Interaction: alert, prompt, confirm
+		https://javascript.info/type-conversions	Type Conversions
+		https://javascript.info/operators	Basic operators, maths
+		https://javascript.info/comparison	Comparisons
+		https://javascript.info/ifelse	Conditional branching: if, '?'
+		https://javascript.info/logical-operators	Logical operators
+		https://javascript.info/nullish-coalescing-operator	Nullish coalescing operator '??'
+		https://javascript.info/while-for	Loops: while and for
+		https://javascript.info/switch	The "switch" statement
+		https://javascript.info/function-basics	Functions
+		https://javascript.info/function-expressions	Function expressions
+		https://javascript.info/arrow-functions-basics	Arrow functions, the basics
+		https://javascript.info/javascript-specials	JavaScript specials
+	https://javascript.info/code-quality	Code quality
+		https://javascript.info/debugging-chrome	Debugging in the browser
+		https://javascript.info/coding-style	Coding Style
+		https://javascript.info/comments	Comments
+		https://javascript.info/ninja-code	Ninja code
+		https://javascript.info/testing-mocha	Automated testing with Mocha
+		https://javascript.info/polyfills	Polyfills and transpilers
+	https://javascript.info/object-basics	Objects: the basics
+		https://javascript.info/object	Objects
+		https://javascript.info/object-copy	Object references and copying
+		https://javascript.info/garbage-collection	Garbage collection
+		https://javascript.info/object-methods	Object methods, "this"
+		https://javascript.info/constructor-new	Constructor, operator "new"
+		https://javascript.info/optional-chaining	Optional chaining '?.'
+		https://javascript.info/symbol	Symbol type
+		https://javascript.info/object-toprimitive	Object to primitive conversion
+	https://javascript.info/data-types	Data types
+		https://javascript.info/primitives-methods	Methods of primitives
+		https://javascript.info/number	Numbers
+		https://javascript.info/string	Strings
+		https://javascript.info/array	Arrays
+		https://javascript.info/array-methods	Array methods
+		https://javascript.info/iterable	Iterables
+		https://javascript.info/map-set	Map and Set
+		https://javascript.info/weakmap-weakset	WeakMap and WeakSet
+		https://javascript.info/keys-values-entries	Object.keys, values, entries
+		https://javascript.info/destructuring-assignment	Destructuring assignment
+		https://javascript.info/date	Date and time
+		https://javascript.info/json	JSON methods, toJSON
+	https://javascript.info/advanced-functions	Advanced working with functions
+		https://javascript.info/recursion	Recursion and stack
+		https://javascript.info/rest-parameters-spread	Rest parameters and spread syntax
+		https://javascript.info/closure	Variable scope, closure
+		https://javascript.info/var	The old "var"
+		https://javascript.info/global-object	Global object
+		https://javascript.info/function-object	Function object, NFE
+		https://javascript.info/new-function	The "new Function" syntax
+		https://javascript.info/settimeout-setinterval	Scheduling: setTimeout and setInterval
+		https://javascript.info/call-apply-decorators	Decorators and forwarding, call/apply
+		https://javascript.info/bind	Function binding
+		https://javascript.info/arrow-functions	Arrow functions revisited
+	https://javascript.info/object-properties	Object properties configuration
+		https://javascript.info/property-descriptors	Property flags and descriptors
+		https://javascript.info/property-accessors	Property getters and setters
+	https://javascript.info/prototypes	Prototypes, inheritance
+		https://javascript.info/prototype-inheritance	Prototypal inheritance
+		https://javascript.info/function-prototype	F.prototype
+		https://javascript.info/native-prototypes	Native prototypes
+		https://javascript.info/prototype-methods	Prototype methods, objects without __proto__
+	https://javascript.info/classes	Classes
+		https://javascript.info/class	Class basic syntax
+		https://javascript.info/class-inheritance	Class inheritance
+		https://javascript.info/static-properties-methods	Static properties and methods
+		https://javascript.info/private-protected-properties-methods	Private and protected properties and methods
+		https://javascript.info/extend-natives	Extending built-in classes
+		https://javascript.info/instanceof	Class checking: "instanceof"
+		https://javascript.info/mixins	Mixins
+	https://javascript.info/error-handling	Error handling
+		https://javascript.info/try-catch	Error handling, "try...catch"
+		https://javascript.info/custom-errors	Custom errors, extending Error
+	https://javascript.info/async	Promises, async/await
+		https://javascript.info/callbacks	Introduction: callbacks
+		https://javascript.info/promise-basics	Promise
+		https://javascript.info/promise-chaining	Promises chaining
+		https://javascript.info/promise-error-handling	Error handling with promises
+		https://javascript.info/promise-api	Promise API
+		https://javascript.info/promisify	Promisification
+		https://javascript.info/microtask-queue	Microtasks
+		https://javascript.info/async-await	Async/await
+	https://javascript.info/generators-iterators	Generators, advanced iteration
+		https://javascript.info/generators	Generators
+		https://javascript.info/async-iterators-generators	Async iteration and generators
+	https://javascript.info/modules	Modules
+		https://javascript.info/modules-intro	Modules, introduction
+		https://javascript.info/import-export	Export and Import
+		https://javascript.info/modules-dynamic-imports	Dynamic imports
+	https://javascript.info/js-misc	Miscellaneous
+		https://javascript.info/proxy	Proxy and Reflect
+		https://javascript.info/eval	Eval: run a code string
+		https://javascript.info/currying-partials	Currying
+		https://javascript.info/reference-type	Reference Type
+		https://javascript.info/bigint	BigInt
+		https://javascript.info/unicode	Unicode, String internals
+#	Browser: Document, Events, Interfaces
+	https://javascript.info/document	Document
+		https://javascript.info/browser-environment	Browser environment, specs
+		https://javascript.info/dom-nodes	DOM tree
+		https://javascript.info/dom-navigation	Walking the DOM
+		https://javascript.info/searching-elements-dom	Searching: getElement*, querySelector*
+		https://javascript.info/basic-dom-node-properties	Node properties: type, tag and contents
+		https://javascript.info/dom-attributes-and-properties	Attributes and properties
+		https://javascript.info/modifying-document	Modifying the document
+		https://javascript.info/styles-and-classes	Styles and classes
+		https://javascript.info/size-and-scroll	Element size and scrolling
+		https://javascript.info/size-and-scroll-window	Window sizes and scrolling
+		https://javascript.info/coordinates	Coordinates
+	https://javascript.info/events	Introduction to Events
+		https://javascript.info/introduction-browser-events	Introduction to browser events
+		https://javascript.info/bubbling-and-capturing	Bubbling and capturing
+		https://javascript.info/event-delegation	Event delegation
+		https://javascript.info/default-browser-action	Browser default actions
+		https://javascript.info/dispatch-events	Dispatching custom events
+	https://javascript.info/event-details	UI Events
+		https://javascript.info/mouse-events-basics	Mouse events
+		https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave	Moving the mouse: mouseover/out, mouseenter/leave
+		https://javascript.info/mouse-drag-and-drop	Drag'n'Drop with mouse events
+		https://javascript.info/pointer-events	Pointer events
+		https://javascript.info/keyboard-events	Keyboard: keydown and keyup
+		https://javascript.info/onscroll	Scrolling
+	https://javascript.info/forms-controls	Forms, controls
+		https://javascript.info/form-elements	Form properties and methods
+		https://javascript.info/focus-blur	Focusing: focus/blur
+		https://javascript.info/events-change-input	Events: change, input, cut, copy, paste
+		https://javascript.info/forms-submit	Forms: event and method submit
+	https://javascript.info/loading	Document and resource loading
+		https://javascript.info/onload-ondomcontentloaded	Page: DOMContentLoaded, load, beforeunload, unload
+		https://javascript.info/script-async-defer	Scripts: async, defer
+		https://javascript.info/onload-onerror	Resource loading: onload and onerror
+	https://javascript.info/ui-misc	Miscellaneous
+		https://javascript.info/mutation-observer	Mutation observer
+		https://javascript.info/selection-range	Selection and Range
+		https://javascript.info/event-loop	Event loop: microtasks and macrotasks
+#	Additional articles
+	https://javascript.info/frames-and-windows	Frames and windows
+		https://javascript.info/popup-windows	Popups and window methods
+		https://javascript.info/cross-window-communication	Cross-window communication
+		https://javascript.info/clickjacking	The clickjacking attack
+	https://javascript.info/binary	Binary data, files
+		https://javascript.info/arraybuffer-binary-arrays	ArrayBuffer, binary arrays
+		https://javascript.info/text-decoder	TextDecoder and TextEncoder
+		https://javascript.info/blob	Blob
+		https://javascript.info/file	File and FileReader
+	https://javascript.info/network	Network requests
+		https://javascript.info/fetch	Fetch
+		https://javascript.info/formdata	FormData
+		https://javascript.info/fetch-progress	Fetch: Download progress
+		https://javascript.info/fetch-abort	Fetch: Abort
+		https://javascript.info/fetch-crossorigin	Fetch: Cross-Origin Requests
+		https://javascript.info/fetch-api	Fetch API
+		https://javascript.info/url	URL objects
+		https://javascript.info/xmlhttprequest	XMLHttpRequest
+		https://javascript.info/resume-upload	Resumable file upload
+		https://javascript.info/long-polling	Long polling
+		https://javascript.info/websocket	WebSocket
+		https://javascript.info/server-sent-events	Server Sent Events
+	https://javascript.info/data-storage	Storing data in the browser
+		https://javascript.info/cookie	Cookies, document.cookie
+		https://javascript.info/localstorage	LocalStorage, sessionStorage
+		https://javascript.info/indexeddb	IndexedDB
+	https://javascript.info/animation	Animation
+		https://javascript.info/bezier-curve	Bezier curve
+		https://javascript.info/css-animations	CSS-animations
+		https://javascript.info/js-animation	JavaScript animations
+	https://javascript.info/web-components	Web components
+		https://javascript.info/webcomponents-intro	From the orbital height
+		https://javascript.info/custom-elements	Custom elements
+		https://javascript.info/shadow-dom	Shadow DOM
+		https://javascript.info/template-element	Template element
+		https://javascript.info/slots-composition	Shadow DOM slots, composition
+		https://javascript.info/shadow-dom-style	Shadow DOM styling
+		https://javascript.info/shadow-dom-events	Shadow DOM and events
+	https://javascript.info/regular-expressions	Regular expressions
+		https://javascript.info/regexp-introduction	Patterns and flags
+		https://javascript.info/regexp-character-classes	Character classes
+		https://javascript.info/regexp-unicode	Unicode: flag "u" and class \p{...}
+		https://javascript.info/regexp-anchors	Anchors: string start ^ and end $
+		https://javascript.info/regexp-multiline-mode	Multiline mode of anchors ^ $, flag "m"
+		https://javascript.info/regexp-boundary	Word boundary: \b
+		https://javascript.info/regexp-escaping	Escaping, special characters
+		https://javascript.info/regexp-character-sets-and-ranges	Sets and ranges [...]
+		https://javascript.info/regexp-quantifiers	Quantifiers +, *, ? and {n}
+		https://javascript.info/regexp-greedy-and-lazy	Greedy and lazy quantifiers
+		https://javascript.info/regexp-groups	Capturing groups
+		https://javascript.info/regexp-backreferences	Backreferences in pattern: \N and \k<name>
+		https://javascript.info/regexp-alternation	Alternation (OR) |
+		https://javascript.info/regexp-lookahead-lookbehind	Lookahead and lookbehind
+		https://javascript.info/regexp-catastrophic-backtracking	Catastrophic backtracking
+		https://javascript.info/regexp-sticky	Sticky flag "y", searching at position
+		https://javascript.info/regexp-methods	Methods of RegExp and String
+

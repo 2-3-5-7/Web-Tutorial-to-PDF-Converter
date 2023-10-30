@@ -1,0 +1,77 @@
+* 此文件书写规则
+* 	- 空白字符行会被忽略
+* 	- "*" 开头的行为注释
+* 	- "!" 开头的为 JS 代码，将多行合并为一行后，发给 chrome 浏览器执行
+* 	- "#" 开头的行当作标题，用来在没有 url 时占位和控制等级，会增加文件名前缀的计数
+* 	- 其它有内容的行，格式为 ([TAB 缩进]url	[文件名])。先根据缩进等级确定标题，后接 url，最后可选的文件名，如无，则从 url 中取
+*
+* 获取 url 用 make_menu.js 代码，或者下面这样手动选取输出，然后调整缩进
+* 	打开 Persist Logs，Ctrl + Shift + C 选取元素
+* 	$0.querySelectorAll('a').forEach(e => console.log(e.href))
+
+* [ 此文件特定信息 ]
+
+* make_menu.js 用到的 selectors
+
+*  let menu = {
+*    title: 'The Modern JavaScript Tutorial',
+*    url: 'https://javascript.info/',
+*    items: [] };
+*  // items_selector, item_title, item_url, item_action
+*  let selectors = [['div.tabs__content', 'h2']
+*                   , ['.list__item', '.list__title a', '.list__title a']
+*                   , ['.list-sub__item:not(:has(a.list-sub__more))', 'a', 'a']
+*                  ];
+
+* 提取内容的 JS 代码，会发给 chrome 浏览器执行
+
+* 移除主页面元素和清 0 padding
+! document.querySelectorAll('.page__nav-wrap, .article-tablet-foot, .comments__header, .sitetoolbar__content, .main__header-group, .tutorial-progress, .page-footer, .codebox .toolbar').forEach(e => e.remove());
+! document.querySelector('.main').style.padding = '0';
+* 解除最大宽度限制
+! document.querySelector('.main').style.maxWidth = 'none';
+* 长代码行折行
+! document.querySelectorAll('.codebox pre>code').forEach(e => e.style.whiteSpace = 'pre-wrap');
+* 多标签代码，切换标签后复制多次，最后删除自身，实现代码分开展示
+! document.querySelectorAll('.code-tabs__buttons').forEach(e => e.remove());
+! document.querySelectorAll('.code-tabs').forEach(code => { code.querySelectorAll('.code-tabs__switch').forEach(tab => {tab.click(); code.before(code.cloneNode(true));}); code.remove();});
+
+* disqus 评论区，只保留前 20 条评论，并移除无关元素
+! const idoc = document.querySelector('#disqus_thread iframe')?.contentWindow.document;
+! if (idoc) {
+!       const ct = idoc.querySelector('#post-list');idoc.querySelectorAll('body *').forEach(el => {if (!ct.contains(el) && !el.contains(ct)) el.remove();});
+!       [...idoc.querySelectorAll('li.post')].slice(20).forEach(e => e.remove());
+!       idoc.querySelectorAll('li.reply, li.bullet, li.comment__share, .post-menu, .post-meta, .follow-user-container, .parent-link-container, .avatar, .vote-up .control, .vote-down .control').forEach(e => e.remove());
+*       post 之间添加分割线
+!       idoc.querySelectorAll('.post-content').forEach(e => e.style.borderBottom = '1px solid lightgray');
+*       移除底部边线
+!       document.querySelector('.comments').style.borderBottom = '0px';
+*       展开折叠的长回复，一般是代码
+!       idoc.querySelectorAll('.see-more').forEach(e => e.click());
+!  }
+! window.scrollTo(0, document.body.scrollHeight);
+
+* [ 注意 ]
+
+* 注意章节页面没有评论区，在 puppeteer 的 waitForFrame 前要判断
+* 不并行，maxConcurrency: 1 时 disqus 输出正常，否则 pdf 尾部可能包含大量空白页
+* 输出 pdf 设置 scale 或 将 viewport height 调成 100_0000 都会导致 disqus 的尾部被截掉，可能是 iframe？没有解决
+* 在执行 page.evaluate(js) 前后都 sleep 2s，等待 iframe 加载和删除 iframe 元素后等待生效，这样做只是尝试出来的，没有依据
+* 操作 disqus 评论需要 disable the Same-origin policy，指定 3 个选项 --user-data-dir=D:\Desktop\chrome --disable-site-isolation-trials --disable-web-security
+* 参考 https://stackoverflow.com/questions/3102819/disable-same-origin-policy-in-chrome
+* 附上代码片段
+* if (getLevelsFromFilename(filename).length === 3) {
+* 	await page.waitForFrame(
+* 		async frame => {
+* 			return frame.name().startsWith('dsq-');
+* 		}
+* 	)
+* }
+* // iframe 等待加载的时间
+* await sleep(2000);
+* await page.evaluate(js);
+* // iframe 里的元素被删除后，需要等一下高度才能变小
+* await sleep(2000);
+
+#	The JavaScript language
+		https://javascript.info/async-iterators-generators	Async iteration and generators

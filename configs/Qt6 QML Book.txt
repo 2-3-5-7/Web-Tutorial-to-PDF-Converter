@@ -1,0 +1,169 @@
+* 此文件书写规则
+* 	- 空白字符行会被忽略
+* 	- "*" 开头的行为注释
+* 	- "!" 开头的为 JS 代码，将多行合并为一行后，发给 chrome 浏览器执行
+* 	- "#" 开头的行当作标题，用来在没有 url 时占位和控制等级，会增加文件名前缀的计数
+* 	- 其它有内容的行，格式为 ([TAB 缩进]url	[文件名])。先根据缩进等级确定标题，后接 url，最后可选的文件名，如无，则从 url 中取
+*
+* 获取 url 用 make_menu.js 代码，或者下面这样手动选取输出，然后调整缩进
+* 	打开 Persist Logs，Ctrl + Shift + C 选取元素
+* 	$0.querySelectorAll('a').forEach(e => console.log(e.href))
+*
+* [ 此文件特定信息 ]
+*
+* make_menu.js 用到的 selectors
+
+* let menu = {
+*     title: 'Qt6 QML Book',
+*     url: 'https://www.qt.io/product/qt6/qml-book',
+*     items: [] };
+* let selectors = [['nav>ul>li', ':scope>a', ':scope>a', 'click']
+*                    , ['ul>li:nth-child(n + 2)', ':scope>a', ':scope>a']];
+*
+* 提取内容的 JS 代码，会发给 chrome 浏览器执行
+
+! const ct = document.querySelector('article div[class*= content]');document.querySelectorAll('body *').forEach(el => {if (!ct.contains(el) && !el.contains(ct)) el.remove();});
+
+
+https://www.qt.io/product/qt6/qml-book/preface-preface	Preface 
+	https://www.qt.io/product/qt6/qml-book/preface-acknowledgements	Acknowledgements
+	https://www.qt.io/product/qt6/qml-book/preface-authors	Authors
+https://www.qt.io/product/qt6/qml-book/ch01-meetqt-meet-qt	Meet Qt 
+	https://www.qt.io/product/qt6/qml-book/ch01-meetqt-blocks	Qt Building Blocks
+	https://www.qt.io/product/qt6/qml-book/ch01-meetqt-intro	Qt 6 Introduction
+https://www.qt.io/product/qt6/qml-book/ch02-start-quick-start	Getting Started 
+	https://www.qt.io/product/qt6/qml-book/ch02-start-install	Installing Qt 6 SDK
+	https://www.qt.io/product/qt6/qml-book/ch02-start-hello-world	Hello World
+	https://www.qt.io/product/qt6/qml-book/ch02-start-app-types	Application Types
+	https://www.qt.io/product/qt6/qml-book/ch02-start-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-qt-creator	Qt Creator IDE 
+	https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-user-interface	The User Interface
+	https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-kit-registry	Registering your Qt Kit
+	https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-projects	Managing Projects
+	https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-editor	Using the Editor
+	https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-locator	Locator
+	https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-debugging	Debugging
+	https://www.qt.io/product/qt6/qml-book/ch03-qtcreator-shortcuts	Shortcuts
+https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-quick-start	Quick Starter
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-qml-syntax	QML Syntax
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements	Core Elements
+* 重复了
+*	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements#rectangle-element	Rectangle Element
+*	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements#text-element	Text Element
+*	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements#image-element	Image Element
+*	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-core-elements#mousearea-element	MouseArea Element
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-components	Components
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-transformations	Simple Transformations
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-positioning	Positioning Elements
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-layout	Layout Items
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-input	Input Elements
+	https://www.qt.io/product/qt6/qml-book/ch04-qmlstart-advanced	Advanced Techniques
+https://www.qt.io/product/qt6/qml-book/ch05-fluid-fluid-elements	Fluid Elements 
+	https://www.qt.io/product/qt6/qml-book/ch05-fluid-animations	Animations
+	https://www.qt.io/product/qt6/qml-book/ch05-fluid-states-transitions	States and Transitions
+	https://www.qt.io/product/qt6/qml-book/ch05-fluid-advanced	Advanced Techniques
+https://www.qt.io/product/qt6/qml-book/ch06-controls-controls2	QtQuick Controls 
+	https://www.qt.io/product/qt6/qml-book/ch06-controls-introduction	Introduction to Controls
+	https://www.qt.io/product/qt6/qml-book/ch06-controls-image-viewer	An Image Viewer
+	https://www.qt.io/product/qt6/qml-book/ch06-controls-common-patterns	Common Patterns
+	https://www.qt.io/product/qt6/qml-book/ch06-controls-imagine-style	The Imagine Style
+	https://www.qt.io/product/qt6/qml-book/ch06-controls-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch07-modelview-model-view	Model View 
+	https://www.qt.io/product/qt6/qml-book/ch07-modelview-concept	Concept
+	https://www.qt.io/product/qt6/qml-book/ch07-modelview-basic-models	Basic Models
+	https://www.qt.io/product/qt6/qml-book/ch07-modelview-dynamic-views	Dynamic Views
+	https://www.qt.io/product/qt6/qml-book/ch07-modelview-delegate	Delegate
+	https://www.qt.io/product/qt6/qml-book/ch07-modelview-advanced	Advanced Techniques
+	https://www.qt.io/product/qt6/qml-book/ch07-modelview-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch08-canvas-canvas-element	Canvas 
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-convenience-api	Convenience API
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-gradients	Gradients
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-shadows	Shadows
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-images	Images
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-transformation	Transformation
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-composition-modes	Composition Modes
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-pixel-buffer	Pixel Buffers
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-canvas-paint	Canvas Paint
+	https://www.qt.io/product/qt6/qml-book/ch08-canvas-port-from-html	Porting from HTML5 Canvas
+https://www.qt.io/product/qt6/qml-book/ch09-shapes-shapes	Shapes 
+	https://www.qt.io/product/qt6/qml-book/ch09-shapes-basics	A Basic Shape
+	https://www.qt.io/product/qt6/qml-book/ch09-shapes-paths	Building Paths
+	https://www.qt.io/product/qt6/qml-book/ch09-shapes-gradients	Filling Shapes
+	https://www.qt.io/product/qt6/qml-book/ch09-shapes-animations	Animating Shapes
+	https://www.qt.io/product/qt6/qml-book/ch09-shapes-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch10-effects-effects	Effects 
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-particles	Particle Concept
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-simple-simulation	Simple Simulation
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-particle-parameters	Particle Parameters
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-directed-particles	Directed Particles
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-affecting-particles	Affecting Particles
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-particle-groups	Particle Groups
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-particle-painters	Particle Painters
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-opengl-shaders	Graphics Shaders
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-shader-elements	Shader Elements
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-fragment-shaders	Fragment Shaders
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-wave-effect	Wave Effect
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-vertex-shader	Vertex Shader
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-curtain-effect	Curtain Effect
+	https://www.qt.io/product/qt6/qml-book/ch10-effects-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch11-multimedia-multimedia	Multimedia 
+	https://www.qt.io/product/qt6/qml-book/ch11-multimedia-playing-media	Playing Media
+	https://www.qt.io/product/qt6/qml-book/ch11-multimedia-sound-effects	Sound Effects
+	https://www.qt.io/product/qt6/qml-book/ch11-multimedia-video-streams	Video Streams
+	https://www.qt.io/product/qt6/qml-book/ch11-multimedia-capturing-images	Capturing Images
+	https://www.qt.io/product/qt6/qml-book/ch11-multimedia-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch12-qtquick3d-intro	Qt Quick 3D 
+	https://www.qt.io/product/qt6/qml-book/ch12-qtquick3d-basics	The Basics
+	https://www.qt.io/product/qt6/qml-book/ch12-qtquick3d-assets	Working with Assets
+	https://www.qt.io/product/qt6/qml-book/ch12-qtquick3d-materials-and-light	Materials and Light
+	https://www.qt.io/product/qt6/qml-book/ch12-qtquick3d-animations	Animations
+	https://www.qt.io/product/qt6/qml-book/ch12-qtquick3d-mixing-2d-and-3d	Mixing 2D and 3D Contents
+	https://www.qt.io/product/qt6/qml-book/ch12-qtquick3d-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch13-networking-networking	Networking 
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-serve-qml	Serving UI via HTTP
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-templates	Templates
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-http-requests	HTTP Requests
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-local-files	Local files
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-rest-api	REST API
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-authentication	Authentication using OAuth
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-web-sockets	Web Sockets
+	https://www.qt.io/product/qt6/qml-book/ch13-networking-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch14-storage-storage	Storage 
+	https://www.qt.io/product/qt6/qml-book/ch14-storage-settings	Settings
+	https://www.qt.io/product/qt6/qml-book/ch14-storage-local-storage	Local Storage - SQL
+https://www.qt.io/product/qt6/qml-book/ch15-dynamicqml-dynamic-qml	Dynamic QML 
+	https://www.qt.io/product/qt6/qml-book/ch15-dynamicqml-loading-components	Loading Components Dynamically
+	https://www.qt.io/product/qt6/qml-book/ch15-dynamicqml-dynamic-objects	Creating and Destroying Objects
+	https://www.qt.io/product/qt6/qml-book/ch15-dynamicqml-tracking-objects	Tracking Dynamic Objects
+	https://www.qt.io/product/qt6/qml-book/ch15-dynamicqml-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch16-javascript-javascript	Javascript 
+	https://www.qt.io/product/qt6/qml-book/ch16-javascript-html-qml	Browser/HTML vs Qt Quick/QML
+	https://www.qt.io/product/qt6/qml-book/ch16-javascript-js-language	JS Language
+	https://www.qt.io/product/qt6/qml-book/ch16-javascript-js-objects	JS Objects
+	https://www.qt.io/product/qt6/qml-book/ch16-javascript-js-console	Creating a JS Console
+https://www.qt.io/product/qt6/qml-book/ch17-qtcpp-qtcpp	Qt C++ 
+	https://www.qt.io/product/qt6/qml-book/ch17-qtcpp-boilerplate	A Boilerplate Application
+	https://www.qt.io/product/qt6/qml-book/ch17-qtcpp-qobject	The QObject
+	https://www.qt.io/product/qt6/qml-book/ch17-qtcpp-build-system	Build Systems
+	https://www.qt.io/product/qt6/qml-book/ch17-qtcpp-common-classes	Common Qt Classes
+	https://www.qt.io/product/qt6/qml-book/ch17-qtcpp-cpp-models	Models in C++
+https://www.qt.io/product/qt6/qml-book/ch18-extensions-extending-qml	Extending QML 
+	https://www.qt.io/product/qt6/qml-book/ch18-extensions-qml-runtime	Understanding the QML Run-time
+	https://www.qt.io/product/qt6/qml-book/ch18-extensions-plugin-content	Plugin Content
+	https://www.qt.io/product/qt6/qml-book/ch18-extensions-create-plugin	Creating the plugin
+	https://www.qt.io/product/qt6/qml-book/ch18-extensions-fileio-demo	FileIO Implementation
+	https://www.qt.io/product/qt6/qml-book/ch18-extensions-using-fileio	Using FileIO
+	https://www.qt.io/product/qt6/qml-book/ch18-extensions-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch19-python-qt-python	Qt for Python 
+	https://www.qt.io/product/qt6/qml-book/ch19-python-introduction	Introduction
+	https://www.qt.io/product/qt6/qml-book/ch19-python-installing	Installing
+	https://www.qt.io/product/qt6/qml-book/ch19-python-build-app	Building an Application
+	https://www.qt.io/product/qt6/qml-book/ch19-python-limitations	Limitations
+	https://www.qt.io/product/qt6/qml-book/ch19-python-summary	Summary
+https://www.qt.io/product/qt6/qml-book/ch20-qtformcu-qtformcu	Qt for MCUs 
+	https://www.qt.io/product/qt6/qml-book/ch20-qtformcu-setup	Setup
+	https://www.qt.io/product/qt6/qml-book/ch20-qtformcu-helloworld	Hello World - for MCUs
+	https://www.qt.io/product/qt6/qml-book/ch20-qtformcu-cpp	Integrating with C++
+	https://www.qt.io/product/qt6/qml-book/ch20-qtformcu-models	Working with Models
+	https://www.qt.io/product/qt6/qml-book/ch20-qtformcu-summary	Summary
+

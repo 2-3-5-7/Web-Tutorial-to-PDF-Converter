@@ -1,0 +1,204 @@
+1. The JavaScript language	1
+	1.1 An introduction	2
+		1.1.1 An Introduction to JavaScript	3
+		1.1.2 Manuals and specifications	9
+		1.1.3 Code editors	12
+		1.1.4 Developer console	16
+	1.2 JavaScript Fundamentals	20
+		1.2.1 Hello, world!	21
+		1.2.2 Code structure	27
+		1.2.3 The modern mode, "use strict"	33
+		1.2.4 Variables	37
+		1.2.5 Data types	47
+		1.2.6 Interaction: alert, prompt, confirm	57
+		1.2.7 Type Conversions	64
+		1.2.8 Basic operators, maths	74
+		1.2.9 Comparisons	88
+		1.2.10 Conditional branching: if, '?'	95
+		1.2.11 Logical operators	105
+		1.2.12 Nullish coalescing operator '??'	116
+		1.2.13 Loops: while and for	123
+		1.2.14 The "switch" statement	137
+		1.2.15 Functions	143
+		1.2.16 Function expressions	158
+		1.2.17 Arrow functions, the basics	168
+		1.2.18 JavaScript specials	174
+	1.3 Code quality	183
+		1.3.1 Debugging in the browser	184
+		1.3.2 Coding Style	193
+		1.3.3 Comments	205
+		1.3.4 Ninja code	213
+		1.3.5 Automated testing with Mocha	221
+		1.3.6 Polyfills and transpilers	235
+	1.4 Objects: the basics	240
+		1.4.1 Objects	241
+		1.4.2 Object references and copying	256
+		1.4.3 Garbage collection	266
+		1.4.4 Object methods, "this"	277
+		1.4.5 Constructor, operator "new"	287
+		1.4.6 Optional chaining '?.'	298
+		1.4.7 Symbol type	306
+		1.4.8 Object to primitive conversion	315
+	1.5 Data types	323
+		1.5.1 Methods of primitives	324
+		1.5.2 Numbers	331
+		1.5.3 Strings	347
+		1.5.4 Arrays	361
+		1.5.5 Array methods	378
+		1.5.6 Iterables	402
+		1.5.7 Map and Set	414
+		1.5.8 WeakMap and WeakSet	425
+		1.5.9 Object.keys, values, entries	436
+		1.5.10 Destructuring assignment	441
+		1.5.11 Date and time	456
+		1.5.12 JSON methods, toJSON	472
+	1.6 Advanced working with functions	487
+		1.6.1 Recursion and stack	488
+		1.6.2 Rest parameters and spread syntax	505
+		1.6.3 Variable scope, closure	514
+		1.6.4 The old "var"	533
+		1.6.5 Global object	542
+		1.6.6 Function object, NFE	546
+		1.6.7 The "new Function" syntax	557
+		1.6.8 Scheduling: setTimeout and setInterval	563
+		1.6.9 Decorators and forwarding, call/apply	575
+		1.6.10 Function binding	591
+		1.6.11 Arrow functions revisited	603
+	1.7 Object properties configuration	611
+		1.7.1 Property flags and descriptors	612
+		1.7.2 Property getters and setters	622
+	1.8 Prototypes, inheritance	630
+		1.8.1 Prototypal inheritance	631
+		1.8.2 F.prototype	644
+		1.8.3 Native prototypes	653
+		1.8.4 Prototype methods, objects without __proto__	663
+	1.9 Classes	673
+		1.9.1 Class basic syntax	674
+		1.9.2 Class inheritance	687
+		1.9.3 Static properties and methods	705
+		1.9.4 Private and protected properties and methods	714
+		1.9.5 Extending built-in classes	726
+		1.9.6 Class checking: "instanceof"	731
+		1.9.7 Mixins	739
+	1.10 Error handling	748
+		1.10.1 Error handling, "try...catch"	749
+		1.10.2 Custom errors, extending Error	766
+	1.11 Promises, async/await	776
+		1.11.1 Introduction: callbacks	777
+		1.11.2 Promise	785
+		1.11.3 Promises chaining	797
+		1.11.4 Error handling with promises	809
+		1.11.5 Promise API	817
+		1.11.6 Promisification	826
+		1.11.7 Microtasks	833
+		1.11.8 Async/await	839
+	1.12 Generators, advanced iteration	850
+		1.12.1 Generators	851
+		1.12.2 Async iteration and generators	865
+	1.13 Modules	877
+		1.13.1 Modules, introduction	878
+		1.13.2 Export and Import	891
+		1.13.3 Dynamic imports	903
+	1.14 Miscellaneous	909
+		1.14.1 Proxy and Reflect	910
+		1.14.2 Eval: run a code string	937
+		1.14.3 Currying	942
+		1.14.4 Reference Type	951
+		1.14.5 BigInt	956
+		1.14.6 Unicode, String internals	963
+2. Browser: Document, Events, Interfaces	967
+	2.1 Document	968
+		2.1.1 Browser environment, specs	969
+		2.1.2 DOM tree	974
+		2.1.3 Walking the DOM	985
+		2.1.4 Searching: getElement*, querySelector*	998
+		2.1.5 Node properties: type, tag and contents	1008
+		2.1.6 Attributes and properties	1023
+		2.1.7 Modifying the document	1036
+		2.1.8 Styles and classes	1061
+		2.1.9 Element size and scrolling	1072
+		2.1.10 Window sizes and scrolling	1087
+		2.1.11 Coordinates	1093
+	2.2 Introduction to Events	1109
+		2.2.1 Introduction to browser events	1110
+		2.2.2 Bubbling and capturing	1126
+		2.2.3 Event delegation	1137
+		2.2.4 Browser default actions	1151
+		2.2.5 Dispatching custom events	1165
+	2.3 UI Events	1174
+		2.3.1 Mouse events	1175
+		2.3.2 Moving the mouse: mouseover/out, mouseenter/leave	1186
+		2.3.3 Drag'n'Drop with mouse events	1210
+		2.3.4 Pointer events	1222
+		2.3.5 Keyboard: keydown and keyup	1231
+		2.3.6 Scrolling	1242
+	2.4 Forms, controls	1249
+		2.4.1 Form properties and methods	1250
+		2.4.2 Focusing: focus/blur	1259
+		2.4.3 Events: change, input, cut, copy, paste	1272
+		2.4.4 Forms: event and method submit	1279
+	2.5 Document and resource loading	1284
+		2.5.1 Page: DOMContentLoaded, load, beforeunload, unload	1285
+		2.5.2 Scripts: async, defer	1296
+		2.5.3 Resource loading: onload and onerror	1304
+	2.6 Miscellaneous	1312
+		2.6.1 Mutation observer	1313
+		2.6.2 Selection and Range	1323
+		2.6.3 Event loop: microtasks and macrotasks	1341
+3. Additional articles	1352
+	3.1 Frames and windows	1353
+		3.1.1 Popups and window methods	1354
+		3.1.2 Cross-window communication	1363
+		3.1.3 The clickjacking attack	1375
+	3.2 Binary data, files	1384
+		3.2.1 ArrayBuffer, binary arrays	1385
+		3.2.2 TextDecoder and TextEncoder	1396
+		3.2.3 Blob	1400
+		3.2.4 File and FileReader	1409
+	3.3 Network requests	1417
+		3.3.1 Fetch	1418
+		3.3.2 FormData	1428
+		3.3.3 Fetch: Download progress	1436
+		3.3.4 Fetch: Abort	1442
+		3.3.5 Fetch: Cross-Origin Requests	1446
+		3.3.6 Fetch API	1459
+		3.3.7 URL objects	1466
+		3.3.8 XMLHttpRequest	1474
+		3.3.9 Resumable file upload	1486
+		3.3.10 Long polling	1490
+		3.3.11 WebSocket	1500
+		3.3.12 Server Sent Events	1511
+	3.4 Storing data in the browser	1519
+		3.4.1 Cookies, document.cookie	1520
+		3.4.2 LocalStorage, sessionStorage	1532
+		3.4.3 IndexedDB	1540
+	3.5 Animation	1560
+		3.5.1 Bezier curve	1561
+		3.5.2 CSS-animations	1573
+		3.5.3 JavaScript animations	1597
+	3.6 Web components	1614
+		3.6.1 From the orbital height	1615
+		3.6.2 Custom elements	1619
+		3.6.3 Shadow DOM	1631
+		3.6.4 Template element	1637
+		3.6.5 Shadow DOM slots, composition	1640
+		3.6.6 Shadow DOM styling	1651
+		3.6.7 Shadow DOM and events	1658
+	3.7 Regular expressions	1664
+		3.7.1 Patterns and flags	1665
+		3.7.2 Character classes	1671
+		3.7.3 Unicode: flag "u" and class \p{...}	1676
+		3.7.4 Anchors: string start ^ and end $	1682
+		3.7.5 Multiline mode of anchors ^ $, flag "m"	1686
+		3.7.6 Word boundary: \b	1690
+		3.7.7 Escaping, special characters	1694
+		3.7.8 Sets and ranges [...]	1697
+		3.7.9 Quantifiers +, *, ? and {n}	1703
+		3.7.10 Greedy and lazy quantifiers	1707
+		3.7.11 Capturing groups	1718
+		3.7.12 Backreferences in pattern: \N and \k<name>	1730
+		3.7.13 Alternation (OR) |	1733
+		3.7.14 Lookahead and lookbehind	1739
+		3.7.15 Catastrophic backtracking	1745
+		3.7.16 Sticky flag "y", searching at position	1752
+		3.7.17 Methods of RegExp and String	1756
