@@ -29,5 +29,5 @@ async function sortBkmk(inputFile) {
     checkDuplicateLines(outputFile);
 })();
 
-// checkIndentErrors('FreePic2Pdf_bkmk.txt');
-// checkDuplicateLines('FreePic2Pdf_bkmk.txt');
+// checkIndentErrors('FreePic2Pdf_bkmk_sorted.txt', true);
+// checkDuplicateLines('FreePic2Pdf_bkmk_sorted.txt');

@@ -27,5 +27,5 @@ async function correctBkmk(inputFile) {
     checkDuplicateLines(outputFile);
 })();
 
-// checkIndentErrors('FreePic2Pdf_bkmk.txt');
-// checkDuplicateLines('FreePic2Pdf_bkmk.txt');
+// checkIndentErrors('FreePic2Pdf_bkmk_corrected.txt', true);
+// checkDuplicateLines('FreePic2Pdf_bkmk_corrected.txt');

@@ -1,0 +1,88 @@
+* 此文件书写规则
+* 	- 空白字符行会被忽略
+* 	- "*" 开头的行为注释
+* 	- "!" 开头的为 JS 代码，将多行合并为一行后，发给 chrome 浏览器执行
+* 	- "#" 开头的行当作标题，用来在没有 url 时占位和控制等级，会增加文件名前缀的计数
+* 	- 其它有内容的行，格式为 ([TAB 缩进]url	[文件名])。先根据缩进等级确定标题，后接 url，最后可选的文件名，如无，则从 url 中取
+*
+* 获取 url 用 make_menu.js 代码，或者下面这样手动选取输出，然后调整缩进
+* 	打开 Persist Logs，Ctrl + Shift + C 选取元素
+* 	$0.querySelectorAll('a').forEach(e => console.log(e.href))
+
+* [ 此文件特定信息 ]
+
+* make_menu.js 用到的 selectors
+
+*  let menu = {
+*    title: 'Learn React',
+*    url: 'https://react.dev/learn',
+*    items: [] };
+*  // items_selector, item_title, item_url, item_action
+*  let selectors = [['nav>ul>li:not([role])', ':scope>a>div', ':scope>a', 'click']
+*                  , ['ul>li', ':scope>a>div', ':scope>a'], 
+*                  ];
+
+* 提取内容的 JS 代码，会发给 chrome 浏览器执行
+
+* 只保留文章主体部分
+! const ct = document.querySelector('.ps-0');document.querySelectorAll('body *').forEach(el => {if (!ct.contains(el) && !el.contains(ct)) el.remove();});
+* 移除底部导航按钮
+! document.querySelector('div.max-w-7xl.mx-auto.grid.grid-cols-1').remove();
+* 点击 show details 按钮，点击后删除该按钮
+! document.querySelectorAll('button.bg-purple-50.border-purple-50').forEach(e => e.click());
+! document.querySelectorAll('button.bg-purple-50.border-purple-50').forEach(e => e.remove());
+* 点击代码块 show more 按钮，点击后删除该按钮
+! document.querySelectorAll('button.sandpack-expand.flex.text-base.justify-between').forEach(e => e.click());
+! document.querySelectorAll('button.sandpack-expand.flex.text-base.justify-between').forEach(e => e.remove());
+* 移除代码块按钮
+! document.querySelectorAll('.px-3.flex.items-center.justify-end.text-start').forEach(el => el.remove());
+* 移除代码执行结果，不知道为何，反正看不到
+! document.querySelectorAll('div.order-last.sp-stack').forEach(el => el.remove());
+
+#	Get Started
+	https://react.dev/learn	Quick Start
+		https://react.dev/learn/tutorial-tic-tac-toe	Tutorial: Tic-Tac-Toe
+		https://react.dev/learn/thinking-in-react	Thinking in React
+	https://react.dev/learn/installation	Installation
+		https://react.dev/learn/start-a-new-react-project	Start a New React Project
+		https://react.dev/learn/add-react-to-an-existing-project	Add React to an Existing Project
+		https://react.dev/learn/editor-setup	Editor Setup
+		https://react.dev/learn/typescript	Using TypeScript
+		https://react.dev/learn/react-developer-tools	React Developer Tools
+#	Learn React
+	https://react.dev/learn/describing-the-ui	Describing the UI
+		https://react.dev/learn/your-first-component	Your First Component
+		https://react.dev/learn/importing-and-exporting-components	Importing and Exporting Components
+		https://react.dev/learn/writing-markup-with-jsx	Writing Markup with JSX
+		https://react.dev/learn/javascript-in-jsx-with-curly-braces	JavaScript in JSX with Curly Braces
+		https://react.dev/learn/passing-props-to-a-component	Passing Props to a Component
+		https://react.dev/learn/conditional-rendering	Conditional Rendering
+		https://react.dev/learn/rendering-lists	Rendering Lists
+		https://react.dev/learn/keeping-components-pure	Keeping Components Pure
+		https://react.dev/learn/understanding-your-ui-as-a-tree	Your UI as a Tree
+	https://react.dev/learn/adding-interactivity	Adding Interactivity
+		https://react.dev/learn/responding-to-events	Responding to Events
+		https://react.dev/learn/state-a-components-memory	State: A Component's Memory
+		https://react.dev/learn/render-and-commit	Render and Commit
+		https://react.dev/learn/state-as-a-snapshot	State as a Snapshot
+		https://react.dev/learn/queueing-a-series-of-state-updates	Queueing a Series of State Updates
+		https://react.dev/learn/updating-objects-in-state	Updating Objects in State
+		https://react.dev/learn/updating-arrays-in-state	Updating Arrays in State
+	https://react.dev/learn/managing-state	Managing State
+		https://react.dev/learn/reacting-to-input-with-state	Reacting to Input with State
+		https://react.dev/learn/choosing-the-state-structure	Choosing the State Structure
+		https://react.dev/learn/sharing-state-between-components	Sharing State Between Components
+		https://react.dev/learn/preserving-and-resetting-state	Preserving and Resetting State
+		https://react.dev/learn/extracting-state-logic-into-a-reducer	Extracting State Logic into a Reducer
+		https://react.dev/learn/passing-data-deeply-with-context	Passing Data Deeply with Context
+		https://react.dev/learn/scaling-up-with-reducer-and-context	Scaling Up with Reducer and Context
+	https://react.dev/learn/escape-hatches	Escape Hatches
+		https://react.dev/learn/referencing-values-with-refs	Referencing Values with Refs
+		https://react.dev/learn/manipulating-the-dom-with-refs	Manipulating the DOM with Refs
+		https://react.dev/learn/synchronizing-with-effects	Synchronizing with Effects
+		https://react.dev/learn/you-might-not-need-an-effect	You Might Not Need an Effect
+		https://react.dev/learn/lifecycle-of-reactive-effects	Lifecycle of Reactive Effects
+		https://react.dev/learn/separating-events-from-effects	Separating Events from Effects
+		https://react.dev/learn/removing-effect-dependencies	Removing Effect Dependencies
+		https://react.dev/learn/reusing-logic-with-custom-hooks	Reusing Logic with Custom Hooks
+

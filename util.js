@@ -51,22 +51,36 @@ function removeLeadingNumbers(line) {
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-function checkIndentErrors(filename) {
+function checkIndentErrors(filename, corrected = false) {
     const contents = fs.readFileSync(filename, 'utf8');
 
     let prevIndent = -1;
-    let lineNumber = 1;
-
-    for (let line of contents.split('\n')) {
-        const indent = getIndentLevel(line);
+    let lines = contents.split('\n');
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+        let indent = getIndentLevel(line);
 
         if (indent > prevIndent + 1) {
-            console.log(`Indent error line ${lineNumber - 1} -> ${lineNumber}: ${line.trim()}`);
+            if (corrected) {
+                let wrongIndent = indent;
+                const start = i;
+                indent = prevIndent + 1;
+                lines[i] = '\t'.repeat(indent) + lines[i].trim();
+
+                while (i + 1 < lines.length && getIndentLevel(lines[i + 1]) === wrongIndent) {
+                    i++;
+                    lines[i] = '\t'.repeat(indent) + lines[i].trim();
+                }
+                console.log(`Indent corrected line ${start} -> ${i}: ${lines[i].trim()}`);
+            } else {
+                console.log(`Indent error line ${i} -> ${i + 1}: ${line.trim()}`);
+            }
         }
 
         prevIndent = indent;
-        lineNumber++;
     }
+    fs.writeFileSync(filename, lines.join('\n'));
+    console.log('Indent check done.');
 }
 
 function checkDuplicateLines(filename) {
@@ -81,6 +95,7 @@ function checkDuplicateLines(filename) {
         }
         prevLine = line;
     }
+    console.log('Duplicate check done.');
 }
 
 module.exports = {
